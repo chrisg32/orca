@@ -61,6 +61,24 @@ vi.mock('@/components/ui/dropdown-menu', () => {
         {children}
       </button>
     ),
+    DropdownMenuCheckboxItem: ({
+      children,
+      checked,
+      onCheckedChange
+    }: {
+      children: ReactNode
+      checked?: boolean
+      onCheckedChange?: (checked: boolean) => void
+    }) => (
+      <button
+        type="button"
+        role="menuitemcheckbox"
+        aria-checked={checked}
+        onClick={() => onCheckedChange?.(!checked)}
+      >
+        {children}
+      </button>
+    ),
     DropdownMenuSeparator: () => <hr />,
     DropdownMenuTrigger: ({ children }: { children: ReactNode }) => <>{children}</>
   }
@@ -206,7 +224,7 @@ function hasButton(label: string): boolean {
 }
 
 function selectDisplayMode(label: string): void {
-  const item = [...container.querySelectorAll('[role="radio"]')].find(
+  const item = [...container.querySelectorAll('[role="menuitemradio"]')].find(
     (candidate) => candidate.textContent === label
   )
   if (!item) {
@@ -667,6 +685,11 @@ describe('PRCommentsList hide resolved threads', () => {
     expect(useAppStore.getState().settings?.prCommentsHideResolved).toBe(false)
     expect(container.textContent).toContain('Resolved · 1')
     expect(container.textContent).not.toContain('resolved thread hidden')
+
+    clickButton('Hide resolved threads')
+
+    expect(useAppStore.getState().settings?.prCommentsHideResolved).toBe(true)
+    expect(container.textContent).toContain('1 resolved thread hidden')
   })
 
   it('keeps the chosen view after the list remounts', () => {

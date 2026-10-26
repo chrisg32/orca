@@ -20,7 +20,7 @@ function HiddenResolvedThreadsNote({
   onShow: () => void
 }): React.JSX.Element {
   return (
-    <div className="mx-3 mb-2 flex items-center justify-between gap-2 rounded-md border border-dashed border-border px-2.5 py-1.5 text-[11px] text-muted-foreground">
+    <div className="mx-3 mb-2 flex items-center justify-between gap-2 rounded-md border border-dashed border-border px-2.5 py-1.5 text-2xs text-muted-foreground">
       <span>
         {translate(
           'auto.components.right.sidebar.checks.panel.commentOptions.hiddenResolved',
