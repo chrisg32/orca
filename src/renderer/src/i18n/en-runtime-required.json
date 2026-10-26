@@ -889,6 +889,10 @@
           },
           "checks": {
             "panel": {
+              "commentOptions": {
+                "hiddenResolved_one": "{{count}} resolved thread hidden",
+                "hiddenResolved_other": "{{count}} resolved threads hidden"
+              },
               "content": {
                 "07eccfa397": "No details are available for this check.",
                 "0fc6f743b3": "by",
