@@ -353,8 +353,8 @@ describe('PRCommentsList comment resolution selection', () => {
 
     clickButton('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
-    clickButton('Send 1 queued comments to AI')
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
+    clickButton('Send 1 queued comment to AI')
 
     expect(onResolveSelectedCommentsWithAI).toHaveBeenCalledTimes(1)
     const selectedGroups = onResolveSelectedCommentsWithAI.mock.calls[0]?.[0] as PRCommentGroup[]
@@ -377,8 +377,8 @@ describe('PRCommentsList comment resolution selection', () => {
 
     clickButton('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
-    clickButton('Send 1 queued comments to AI')
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
+    clickButton('Send 1 queued comment to AI')
 
     expect(onResolveSelectedCommentsWithAI).toHaveBeenCalledTimes(1)
     const selectedGroups = onResolveSelectedCommentsWithAI.mock.calls[0]?.[0] as PRCommentGroup[]
@@ -398,8 +398,8 @@ describe('PRCommentsList comment resolution selection', () => {
 
     clickMenuItem('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
-    clickButton('Send 1 queued comments to AI')
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
+    clickButton('Send 1 queued comment to AI')
 
     expect(onResolveSelectedCommentsWithAI).toHaveBeenCalledTimes(1)
   })
@@ -410,10 +410,10 @@ describe('PRCommentsList comment resolution selection', () => {
     })
     clickButton('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
     clickButton('Clear queued comments')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(false)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(false)
     expect(container.querySelector('button[role="checkbox"]')).toBeNull()
   })
 
@@ -446,14 +446,14 @@ describe('PRCommentsList comment resolution selection', () => {
     renderList({ comments })
     clickButton('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
 
     renderList({
       comments,
       clearRequest: { contextKey: 'review:42', token: 1 }
     })
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(false)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(false)
     expect(container.querySelector('button[role="checkbox"]')).toBeNull()
   })
 
@@ -462,11 +462,11 @@ describe('PRCommentsList comment resolution selection', () => {
     renderList({ comments })
     clickButton('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
 
     renderList({ comments, clearRequest: null })
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
   })
 
   it('keeps a clear request pending until its review context is mounted', () => {
@@ -481,7 +481,7 @@ describe('PRCommentsList comment resolution selection', () => {
     renderList({ comments: queuedComments, contextKey: 'review:42' })
     clickButton('Queue for agent')
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
 
     renderList({
       comments: [comment({ id: 2, body: 'Other review comment.' })],
@@ -494,7 +494,7 @@ describe('PRCommentsList comment resolution selection', () => {
       clearRequest: { contextKey: 'review:42', token: 1 }
     })
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(false)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(false)
     expect(container.querySelector('button[role="checkbox"]')).toBeNull()
   })
 
@@ -508,7 +508,7 @@ describe('PRCommentsList comment resolution selection', () => {
       comments: [comment({ id: 1, threadId: 'thread-1', path: 'src/a.ts', isResolved: true })]
     })
 
-    expect(hasButton('Send 1 queued comments to AI')).toBe(false)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(false)
     expect(getPRCommentsListSelectionCountForTests()).toBe(0)
   })
 
@@ -524,9 +524,9 @@ describe('PRCommentsList comment resolution selection', () => {
 
     expect(getPRCommentsListSelectionCountForTests()).toBe(2)
     renderList({ comments, contextKey: githubContext, strictMode: true })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
     renderList({ comments, contextKey: gitlabContext, strictMode: true })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
   })
 
   it('does not refresh LRU recency for an abandoned Suspense render', () => {
@@ -546,9 +546,9 @@ describe('PRCommentsList comment resolution selection', () => {
     seedContext('review:new')
 
     renderList({ comments, contextKey: 'review:oldest' })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(false)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(false)
     renderList({ comments, contextKey: 'review:recent-0' })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
   })
 
   it('bounds persisted review contexts while retaining recently restored selections', () => {
@@ -565,7 +565,7 @@ describe('PRCommentsList comment resolution selection', () => {
 
     // Refresh LRU recency only after the restored context commits.
     renderList({ comments, contextKey: 'review:keep' })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
 
     seedContext('review:new')
 
@@ -574,10 +574,10 @@ describe('PRCommentsList comment resolution selection', () => {
     )
 
     renderList({ comments, contextKey: 'review:stale-0' })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(false)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(false)
 
     renderList({ comments, contextKey: 'review:keep' })
-    expect(hasButton('Send 1 queued comments to AI')).toBe(true)
+    expect(hasButton('Send 1 queued comment to AI')).toBe(true)
   })
 })
 
